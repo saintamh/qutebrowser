@@ -156,9 +156,7 @@ class CompletionItemDelegate(QStyledItemDelegate):
         elif not self._opt.state & QStyle.State_Enabled:
             color = config.val.colors.completion.category.fg
         else:
-            colors = config.val.colors.completion.fg
-            # if multiple colors are set, use different colors per column
-            color = colors[col % len(colors)]
+            color = config.val.colors.completion.fg
         self._painter.setPen(color)
 
         ctx = QAbstractTextDocumentLayout.PaintContext()
