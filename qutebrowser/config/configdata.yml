@@ -1343,6 +1343,7 @@ tabs.title.format_pinned:
       - private
       - current_url
       - protocol
+      - star
     none_ok: true
   desc: Format to use for the tab title for pinned tabs. The same placeholders
     like for `tabs.title.format` are defined.
@@ -1540,15 +1541,9 @@ zoom.text_only:
 ## colors
 
 colors.completion.fg:
-  default: ["white", "white", "white"]
-  type:
-    name: ListOrValue
-    valtype: QtColor
-  desc: >-
-    Text color of the completion widget.
-
-    May be a single color to use for all columns or a list of three colors,
-    one for each column.
+  default: white
+  type: QtColor
+  desc: Text color of the completion widget.
 
 colors.completion.odd.bg:
   default: '#444444'

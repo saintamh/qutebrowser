@@ -136,6 +136,8 @@ class TabWidget(QTabWidget):
         tab = self.widget(idx)
         if tab.data.pinned:
             fmt = config.val.tabs.title.format_pinned
+            if idx != self.currentIndex():
+                tab.data.starred = True
         else:
             fmt = config.val.tabs.title.format
 
@@ -165,6 +167,7 @@ class TabWidget(QTabWidget):
         fields['perc_raw'] = tab.progress()
         fields['backend'] = objects.backend.name
         fields['private'] = ' [Private Mode] ' if tab.private else ''
+        fields['star'] = '*' if tab.data.starred else ''
 
         if tab.load_status() == usertypes.LoadStatus.loading:
             fields['perc'] = '[{}%] '.format(tab.progress())
@@ -273,6 +276,10 @@ class TabWidget(QTabWidget):
         """Emit the tab_index_changed signal if the current tab changed."""
         self.tabBar().on_current_changed()
         self.tab_index_changed.emit(index, self.count())
+        tab = self.widget(index)
+        if tab and tab.data.starred:
+            tab.data.starred = False
+            self._update_tab_title(index)
 
     @pyqtSlot()
     def _on_new_tab_requested(self):
