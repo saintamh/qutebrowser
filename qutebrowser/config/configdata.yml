@@ -1346,7 +1346,11 @@ tabs.title.format_pinned:
       - star
     none_ok: true
   desc: Format to use for the tab title for pinned tabs. The same placeholders
-    like for `tabs.title.format` are defined.
+    as for `tabs.title.format` are defined, as well as:
+
+    * `{star}`: An asterisk `*` if the pinned tab is in the background and its
+    title has changed since the tab was last active, which indicates a new
+    notification from the web page. Empty otherwise.
 
 tabs.width.bar:
   renamed: tabs.width
